@@ -1,6 +1,38 @@
 const form = document.querySelector('#lead-form');
 const phone = document.querySelector('#phone');
 
+for (const [dialogSelector, buttonSelector] of [
+  ['#stay-dialog', '[data-open-stay]'],
+  ['#early-dialog', '[data-open-early]'],
+  ['#family-dialog', '[data-open-family]'],
+  ['#menu-dialog', '[data-open-menu]'],
+  ['#included-dialog', '[data-open-included]'],
+  ['#adult-dialog', '[data-open-adult]'],
+  ['#family-program-dialog', '[data-open-family-program]']
+]) {
+const stayDialog = document.querySelector(dialogSelector);
+const stayDetails = document.querySelector(buttonSelector);
+if (stayDialog && stayDetails) {
+  stayDetails.addEventListener('click', () => {
+    stayDialog.showModal();
+    document.body.classList.add('modal-open');
+  });
+  stayDialog.querySelector('.stay-dialog__close').addEventListener('click', () => stayDialog.close());
+  stayDialog.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => stayDialog.close());
+  });
+  stayDialog.addEventListener('click', event => {
+    if (event.target !== stayDialog) return;
+    const bounds = stayDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) stayDialog.close();
+  });
+  stayDialog.addEventListener('close', () => {
+    document.body.classList.remove('modal-open');
+    stayDetails.focus({ preventScroll: true });
+  });
+}
+}
+
 function formatPhone(value){let digits=value.replace(/\D/g,'');if(!digits)return'';if(digits[0]==='8')digits='7'+digits.slice(1);if(digits[0]!=='7')digits='7'+digits;digits=digits.slice(0,11);const p=digits.slice(1);let out='+7';if(p.length)out+=' ('+p.slice(0,3);if(p.length>=3)out+=')';if(p.length>3)out+=' '+p.slice(3,6);if(p.length>6)out+='-'+p.slice(6,8);if(p.length>8)out+='-'+p.slice(8,10);return out}
 phone.addEventListener('input',()=>{phone.value=formatPhone(phone.value)});
 function setError(input,message){input.setAttribute('aria-invalid',message?'true':'false');const error=input.closest('.field').querySelector('.error');if(error)error.textContent=message}
