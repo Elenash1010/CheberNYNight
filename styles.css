@@ -2393,6 +2393,9 @@ main > .section > .container {
 }
 #formats .benefit { padding: 0 0 clamp(28px, 3vw, 48px); text-align: center; overflow: hidden; }
 #formats .format-photo { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 28px; }
+#formats .format-photo--room { object-position: center 60%; }
+#formats .format-photo--banquet { object-position: center 42%; }
+#formats .format-photo--tree { object-position: center 38%; }
 #formats .benefit > h3,
 #formats .benefit > .holiday-card__subtitle,
 #formats .benefit > .holiday-list { margin-left: clamp(20px, 2.5vw, 40px); margin-right: clamp(20px, 2.5vw, 40px); }
