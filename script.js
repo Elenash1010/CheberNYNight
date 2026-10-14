@@ -1,6 +1,24 @@
 const form = document.querySelector('#lead-form');
 const phone = document.querySelector('#phone');
 
+const heroTitle = document.querySelector('#hero-title');
+if (heroTitle) {
+  const titleCanvas = document.createElement('canvas');
+  const titleContext = titleCanvas.getContext('2d');
+  const fitHeroTitle = () => {
+    if (!titleContext || !heroTitle.clientWidth) return;
+    const style = getComputedStyle(heroTitle);
+    titleContext.font = `${style.fontWeight} 100px ${style.fontFamily}`;
+    heroTitle.querySelectorAll('.hero__title-text').forEach(line => {
+      const measured = titleContext.measureText(line.textContent).width;
+      const size = Math.min(144, (heroTitle.clientWidth - 8) / measured * 100 * .92);
+      line.style.fontSize = `${size}px`;
+    });
+  };
+  new ResizeObserver(fitHeroTitle).observe(heroTitle);
+  document.fonts.ready.then(fitHeroTitle);
+}
+
 for (const [dialogSelector, buttonSelector] of [
   ['#stay-dialog', '[data-open-stay]'],
   ['#early-dialog', '[data-open-early]'],
@@ -11,12 +29,14 @@ for (const [dialogSelector, buttonSelector] of [
   ['#family-program-dialog', '[data-open-family-program]']
 ]) {
 const stayDialog = document.querySelector(dialogSelector);
-const stayDetails = document.querySelector(buttonSelector);
-if (stayDialog && stayDetails) {
-  stayDetails.addEventListener('click', () => {
+const triggers = document.querySelectorAll(buttonSelector);
+let stayDetails;
+if (stayDialog && triggers.length) {
+  triggers.forEach(trigger => trigger.addEventListener('click', () => {
+    stayDetails = trigger;
     stayDialog.showModal();
     document.body.classList.add('modal-open');
-  });
+  }));
   stayDialog.querySelector('.stay-dialog__close').addEventListener('click', () => stayDialog.close());
   stayDialog.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => stayDialog.close());
