@@ -25,7 +25,6 @@ for (const [dialogSelector, buttonSelector] of [
   ['#price-visit-dialog', '[data-open-price-visit]'],
   ['#price-banquet-dialog', '[data-open-price-banquet]'],
   ['#early-dialog', '[data-open-early]'],
-  ['#menu-dialog', '[data-open-menu]'],
   ['#special-menu-dialog', '[data-open-special-menu]'],
   ['#included-dialog', '[data-open-included]'],
   ['#adult-dialog', '[data-open-adult]'],
