@@ -2221,18 +2221,39 @@ main > .section > .container {
 }
 
 /* New Year programme uses the existing typography, backgrounds and panels. */
-.stay-dialog .holiday-card .holiday-card-note { margin: 20px 0 12px; font-size: var(--text-benefit-body); font-weight: 400; line-height: 1.5; }
+#early-program .holiday-card > h3 { text-align: center; }
+@media (min-width: 781px) {
+  #early-program .holiday-grid { row-gap: 0; }
+  #early-program .holiday-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    align-content: start;
+  }
+  #early-program .holiday-card > h3 { grid-row: 1; align-self: start; }
+  #early-program .holiday-card > .holiday-card__subtitle { grid-row: 2; align-self: start; }
+  #early-program .holiday-card > .holiday-list { grid-row: 3; align-self: start; }
+  #early-program .holiday-card > .early-card-description { grid-row: 3; align-self: start; }
+  #early-program .holiday-card > .holiday-card-note { grid-row: 4; align-self: start; }
+  #early-program .holiday-card::after { grid-row: 5; align-self: end; }
+}
+#family-activities .benefits { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 780px) {
+  #family-activities .benefits { grid-template-columns: minmax(0, 1fr); }
+}
+.stay-dialog .holiday-card .holiday-card-note,
+#early-program .holiday-card .holiday-card-note { margin: 20px 0 12px; font-size: var(--text-benefit-body); font-weight: 400; line-height: 1.5; }
 .stay-dialog:where(:not(#stay-dialog)) {
   --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png');
 }
 #adult-dialog { --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png'); }
 #family-program-dialog { --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png'); }
-#early-dialog { --popup-decor: url('assets/newscreens/decor/11a437fa-bb67-4eb8-b68a-5d01b2911eb3.png'); }
+#early-program { --popup-decor: url('assets/newscreens/decor/11a437fa-bb67-4eb8-b68a-5d01b2911eb3.png'); }
 #menu-dialog { --popup-decor: url('assets/newscreens/decor/db424e0b-1972-4cd6-b632-c8652a068c71.png'); }
 #adult-dialog .holiday-timeline::after,
 #family-program-dialog .holiday-timeline::after,
-#early-dialog .holiday-card::after,
-#family-dialog .benefit::after,
+#early-program .holiday-card::after,
+#family-activities .benefit::after,
 #included-dialog > .section > .container::after,
 #menu-dialog > .section > .container::after {
   content: "";
@@ -2243,11 +2264,11 @@ main > .section > .container {
   background: var(--popup-decor) center / contain no-repeat;
   pointer-events: none;
 }
-#early-dialog .holiday-card::after { height: 72px; margin-top: auto; }
-#family-dialog .benefit::after { height: 64px; }
-#family-dialog .benefit:nth-child(1) { --popup-decor: url('assets/newscreens/decor/11a437fa-bb67-4eb8-b68a-5d01b2911eb3.png'); }
-#family-dialog .benefit:nth-child(2) { --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png'); }
-#family-dialog .benefit:nth-child(3) { --popup-decor: url('assets/newscreens/decor/9758ea5e-133f-410b-96c8-b3006dfb8568.png'); }
+#early-program .holiday-card::after { height: 72px; margin-top: auto; }
+#family-activities .benefit::after { height: 64px; }
+#family-activities .benefit:nth-child(1) { --popup-decor: url('assets/newscreens/decor/11a437fa-bb67-4eb8-b68a-5d01b2911eb3.png'); }
+#family-activities .benefit:nth-child(2) { --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png'); }
+#family-activities .benefit:nth-child(3) { --popup-decor: url('assets/newscreens/decor/9758ea5e-133f-410b-96c8-b3006dfb8568.png'); }
 #menu-dialog > .section > .container::after { height: 160px; }
 @media (max-width: 780px) {
   #adult-dialog .holiday-timeline::after,
@@ -2268,7 +2289,17 @@ main > .section > .container {
 #included .holiday-table td { color: var(--navy-2); }
 #included .holiday-table [aria-label="Включено"] { color: #bd852d; font-weight: 800; }
 #included .holiday-actions .holiday-button { min-height: 48px; padding: 12px 28px; }
-#formats [data-open-included] { width: min(620px, 100%); padding-inline: 36px; }
+#formats .container .holiday-actions .holiday-button[data-open-included],
+#formats .container .holiday-actions .holiday-button[data-open-early] {
+  width: min(380px, 100%);
+  min-height: 64px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 18px;
+  border-width: 1px;
+  font-size: 14px;
+}
+#formats [data-open-early] small { font-size: clamp(9px, 2.1vw, 11px); font-weight: 500; line-height: 1.3; text-transform: none; letter-spacing: normal; white-space: nowrap; }
 #winter .winter-photo-card { padding: 0; overflow: hidden; }
 #winter .winter-card-copy h3 {
   color: #d9f0ff;
@@ -2278,6 +2309,8 @@ main > .section > .container {
   -webkit-text-fill-color: transparent;
 }
 #winter .winter-card-copy .holiday-card__subtitle { color: var(--gold); }
+#winter .winter-card-copy h3,
+#winter .winter-card-copy .holiday-card__subtitle { text-align: center; }
 #winter .winter-card-copy .holiday-list { color: #fff; }
 .winter-card-photo { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .winter-card-copy { padding: var(--card-padding); }
@@ -2399,6 +2432,15 @@ main > .section > .container {
 #formats .format-photo--room { object-position: center 60%; }
 #formats .format-photo--banquet { object-position: center 42%; }
 #formats .format-photo--tree { object-position: center 38%; }
+#formats .format-garland {
+  width: 100%;
+  height: clamp(110px, 13vw, 170px);
+  flex-shrink: 0;
+  margin-top: auto;
+  margin-bottom: -20px;
+  background: url('assets/newscreens/decor/2883dc04-fa25-487e-b842-8f7b54e01bf7.png') center / 115% auto no-repeat;
+  pointer-events: none;
+}
 #formats .benefit > h3,
 #formats .benefit > .holiday-card__subtitle,
 #formats .benefit > .holiday-list { margin-left: clamp(20px, 2.5vw, 40px); margin-right: clamp(20px, 2.5vw, 40px); }
@@ -2445,6 +2487,15 @@ main > .between-sections-actions {
 .contact-arrow--medium { width: 39px; height: 92px; }
 .contact-arrow--large { width: 48px; height: 108px; }
 .contact-arrows:hover { color: var(--gold-2); }
+main > .final-booking .holiday-button {
+  width: min(1000px, 100%);
+  min-height: 96px;
+  padding: 24px 40px;
+  border-width: 2px;
+  font-size: clamp(18px, 2.2vw, 30px);
+  font-weight: 800;
+  box-shadow: 0 0 22px rgba(234, 180, 92, .3), 0 8px 28px rgba(0, 9, 28, .4);
+}
 .contact-arrows:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 12px; }
 .hero__subtitle { position: relative; font-weight: 700; margin: 24px 0 12px; }
 .hero__description { position: relative; width: min(100%, 720px); font-size: clamp(20px, 2.15vw, 31px); font-weight: 500; line-height: 1.3; margin: 22px 0 24px; color: var(--gold); }
@@ -2499,7 +2550,9 @@ section[id], footer[id] { scroll-margin-top: 96px; }
   #family-program-dialog #family-program .holiday-timeline::after { height: 88px; margin-top: 4px; }
 }
 .stay-dialog .holiday-card,
+#early-program .holiday-card,
 .stay-dialog .benefit,
+#family-activities .benefit,
 .stay-dialog > .section > .container > .holiday-timeline,
 #included .holiday-table {
   color: #fff;
@@ -2513,8 +2566,11 @@ section[id], footer[id] { scroll-margin-top: 96px; }
 }
 .stay-dialog .holiday-card h3,
 .stay-dialog .holiday-card p,
+#early-program .holiday-card p,
+#early-program .holiday-list,
 .stay-dialog .benefit h3,
 .stay-dialog .benefit p,
+#family-activities .benefit p,
 .stay-dialog .holiday-list,
 .stay-dialog .holiday-timeline h4,
 .stay-dialog .holiday-timeline p,
@@ -2530,13 +2586,18 @@ section[id], footer[id] { scroll-margin-top: 96px; }
 #included .holiday-table [aria-label="Включено"] { color: var(--gold); }
 .stay-dialog .holiday-timeline time,
 .stay-dialog .holiday-card h3,
+#early-program .holiday-card h3,
+#early-program .holiday-card .holiday-card__subtitle,
 .stay-dialog .benefit h3,
+#family-activities .benefit h3,
 .stay-dialog .holiday-card .holiday-card__subtitle,
 #included .holiday-table thead th,
 #stay-program .holiday-timeline time,
 #stay-program .holiday-card > h3 { color: var(--gold); }
 .stay-dialog .holiday-card::after,
+#early-program .holiday-card::after,
 .stay-dialog .benefit::after,
+#family-activities .benefit::after,
 .stay-dialog .holiday-timeline::after,
 #included-dialog > .section > .container::after,
 #menu-dialog > .section > .container::after {
@@ -2563,20 +2624,20 @@ section[id], footer[id] { scroll-margin-top: 96px; }
 #adult-dialog .holiday-timeline::after,
 #family-program-dialog .holiday-timeline::after,
 #included-dialog > .section > .container::after { width: min(100%, 640px); height: 104px; }
-#early-dialog .holiday-card::after { height: 96px; }
-#family-dialog .benefit::after { height: 88px; }
+#early-program .holiday-card::after { height: 96px; }
+#family-activities .benefit::after { height: 88px; }
 @media (max-width: 780px) {
   #adult-dialog .holiday-timeline::after,
   #family-program-dialog .holiday-timeline::after { height: 72px; }
 }
 
 /* Larger decorative glints with cropped transparent margins. */
-#early-dialog .holiday-card::after,
-#family-dialog .benefit::after { height: 112px; background-size: auto 210px; }
-#family-dialog .benefit:nth-child(3) {
+#early-program .holiday-card::after,
+#family-activities .benefit::after { height: 112px; background-size: auto 210px; }
+#family-activities .benefit:nth-child(3) {
   --popup-decor: url('assets/newscreens/decor/11a437fa-bb67-4eb8-b68a-5d01b2911eb3.png');
 }
-#family-dialog .benefit:nth-child(3)::after {
+#family-activities .benefit:nth-child(3)::after {
   width: min(100%, 240px);
   height: 160px;
   background-size: contain;

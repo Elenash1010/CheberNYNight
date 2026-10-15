@@ -22,8 +22,8 @@ if (heroTitle) {
 for (const [dialogSelector, buttonSelector] of [
   ['#stay-dialog', '[data-open-stay]'],
   ['#early-dialog', '[data-open-early]'],
-  ['#family-dialog', '[data-open-family]'],
   ['#menu-dialog', '[data-open-menu]'],
+  ['#special-menu-dialog', '[data-open-special-menu]'],
   ['#included-dialog', '[data-open-included]'],
   ['#adult-dialog', '[data-open-adult]'],
   ['#family-program-dialog', '[data-open-family-program]']
