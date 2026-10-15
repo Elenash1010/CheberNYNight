@@ -21,6 +21,9 @@ if (heroTitle) {
 
 for (const [dialogSelector, buttonSelector] of [
   ['#stay-dialog', '[data-open-stay]'],
+  ['#price-stay-dialog', '[data-open-price-stay]'],
+  ['#price-visit-dialog', '[data-open-price-visit]'],
+  ['#price-banquet-dialog', '[data-open-price-banquet]'],
   ['#early-dialog', '[data-open-early]'],
   ['#menu-dialog', '[data-open-menu]'],
   ['#special-menu-dialog', '[data-open-special-menu]'],

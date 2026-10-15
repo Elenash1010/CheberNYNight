@@ -2221,6 +2221,97 @@ main > .section > .container {
 }
 
 /* New Year programme uses the existing typography, backgrounds and panels. */
+#formats .format-card-actions {
+  display: grid;
+  grid-template-rows: 48px 48px;
+  justify-items: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+#formats .format-card-actions .price-button { margin: 0; align-self: stretch; }
+#formats .format-card-actions .format-details { margin: 0; align-self: stretch; }
+#formats .format-benefits > .benefit:nth-child(2) .format-card-actions { position: relative; }
+#formats .format-benefits > .benefit:nth-child(2) .format-card-actions::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 136px;
+  background: url('assets/newscreens/decor/86f1e9d8-9f56-4350-bea5-8c0f5f615024.png') center / contain no-repeat;
+  pointer-events: none;
+}
+.stay-dialog.price-dialog { width: min(600px, calc(100% - 32px)); }
+.stay-dialog.price-dialog > .section > .container { padding: 56px 24px 24px; }
+.price-dialog .section-head { margin-bottom: 20px; }
+.price-dialog .holiday-actions { margin-top: 20px; }
+.stay-dialog.price-dialog .section-head h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
+.stay-dialog.price-dialog .format-price { margin: 0; padding: 24px 16px; }
+.stay-dialog.price-dialog .format-price__date { font-size: 22px; }
+.stay-dialog.price-dialog .format-price__rates dt { font-size: clamp(17px, 2vw, 22px); }
+.stay-dialog.price-dialog .format-price__unit { font-size: 18px; }
+.price-dialog .format-price { text-align: center; margin-inline: 0; }
+.price-dialog .format-price__rates dd { font-size: clamp(28px, 4vw, 42px); }
+.price-age-note { font-size: 20px; font-weight: 600; line-height: 1.5; text-align: center; color: #061b46; }
+.price-included-line { white-space: nowrap; }
+.price-room-note { margin: 18px 0 0; padding: 16px 18px; border-radius: 14px; background: rgba(224, 240, 255, .88); color: #061b46; font-size: 17px; font-weight: 500; line-height: 1.5; }
+.price-dialog .format-price .price-pending { margin: 0; color: #fff; font-size: 19px; line-height: 1.5; }
+.price-dialog .holiday-actions .holiday-button { min-height: 48px; padding: 12px 24px; }
+#formats .price-button {
+  appearance: none;
+  align-self: center;
+  width: min(240px, calc(100% - 48px));
+  min-height: 48px;
+  margin: 0 auto 12px;
+  padding: 12px 24px;
+  border: 1px solid #f9dca0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe2a0, #eab45c 65%, #dca34b);
+  box-shadow: 0 5px 16px rgba(149, 95, 17, .15), inset 0 1px 0 rgba(255,255,255,.6);
+  color: #061b46;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#formats .price-button:hover {
+  background: #061b46;
+  color: #fff;
+  border-color: var(--gold);
+  filter: none;
+  box-shadow: 0 5px 16px rgba(6, 27, 70, .22);
+}
+#formats .price-button:focus-visible { outline: 3px solid var(--navy-2); outline-offset: 4px; }
+:is(#formats, .price-dialog) .format-price {
+  position: relative;
+  margin: 0 24px 28px;
+  padding: 22px 20px 18px;
+  border: 1px solid rgba(234, 180, 92, .8);
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 50% 0, rgba(234, 180, 92, .12), transparent 65%), linear-gradient(135deg, #102a50, #03132f);
+  box-shadow: inset 0 1px 0 rgba(255, 236, 189, .12), 0 10px 24px rgba(5, 29, 64, .15);
+  color: #fff;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+:is(#formats, .price-dialog) .format-price__date { margin: 0 0 22px; color: #f0ce91; font-size: 24px; font-weight: 600; letter-spacing: .02em; }
+.format-price__rates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+.format-price__rates > div { min-width: 0; padding-inline: 6px; }
+.format-price__rates > div + div { border-left: 1px solid rgba(234,180,92,.3); }
+.format-price__rates dt { font-size: clamp(20px, 2vw, 26px); color: #fff; margin-bottom: 12px; line-height: 1.35; }
+.format-price__rates dd { margin: 0; font-size: clamp(25px, 2.6vw, 39px); line-height: 1.1; font-weight: 800; letter-spacing: -.035em; color: #f5ce80; white-space: nowrap; }
+.format-price__rates dd span { font-size: .58em; font-weight: 600; letter-spacing: 0; }
+:is(#formats, .price-dialog) .format-price__unit { margin: 20px 0 0; color: #e4edf8; font-size: 21px; font-weight: 500; line-height: 1.45; }
+@media (min-width: 781px) {
+  #formats .format-benefits > .benefit > .holiday-list { min-height: 234px; }
+}
+@media (max-width: 1080px) and (min-width: 781px) {
+  :is(#formats, .price-dialog) .format-price { margin-inline: 16px; padding-inline: 10px; }
+  .format-price__rates dd { font-size: 24px; }
+  #formats .format-benefits > .benefit > .holiday-list { min-height: 250px; }
+}
+.format-price-clarification { margin: 24px auto 0; max-width: 900px; text-align: center; color: var(--ink); font-size: 14px; line-height: 1.5; }
 #early-program .holiday-card > h3 { text-align: center; }
 @media (min-width: 781px) {
   #early-program .holiday-grid { row-gap: 0; }
@@ -2299,7 +2390,9 @@ main > .section > .container {
   border-width: 1px;
   font-size: 14px;
 }
-#formats [data-open-early] small { font-size: clamp(9px, 2.1vw, 11px); font-weight: 500; line-height: 1.3; text-transform: none; letter-spacing: normal; white-space: nowrap; }
+#formats .container .holiday-actions .holiday-button[data-open-early] { font-size: 18px; height: 64px; padding: 8px 12px; }
+#formats .container .holiday-actions .holiday-button[data-open-included] { font-size: 18px; height: 64px; padding: 8px 12px; }
+#formats [data-open-early] small { font-size: clamp(11px, 2.6vw, 14px); font-weight: 500; line-height: 1.3; text-transform: none; letter-spacing: normal; white-space: nowrap; }
 #winter .winter-photo-card { padding: 0; overflow: hidden; }
 #winter .winter-card-copy h3 {
   color: #d9f0ff;
@@ -2434,10 +2527,10 @@ main > .section > .container {
 #formats .format-photo--tree { object-position: center 38%; }
 #formats .format-garland {
   width: 100%;
-  height: clamp(110px, 13vw, 170px);
+  height: clamp(110px, 11vw, 150px);
   flex-shrink: 0;
   margin-top: auto;
-  margin-bottom: -20px;
+  margin-bottom: -12px;
   background: url('assets/newscreens/decor/2883dc04-fa25-487e-b842-8f7b54e01bf7.png') center / 115% auto no-repeat;
   pointer-events: none;
 }
