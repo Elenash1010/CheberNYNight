@@ -2221,6 +2221,7 @@ main > .section > .container {
 }
 
 /* New Year programme uses the existing typography, backgrounds and panels. */
+.stay-dialog .holiday-card .holiday-card-note { margin: 20px 0 12px; font-size: var(--text-benefit-body); font-weight: 400; line-height: 1.5; }
 .stay-dialog:where(:not(#stay-dialog)) {
   --popup-decor: url('assets/newscreens/decor/63cc1638-80e1-4219-8f49-7a30c578f7ad.png');
 }
@@ -2368,6 +2369,8 @@ main > .section > .container {
 .stay-dialog .holiday-card h3 { color: var(--navy-2); }
 .stay-dialog .holiday-timeline li { border-color: rgba(16,42,86,.2); }
 #programs .benefit { padding: 0 0 clamp(28px, 3vw, 48px); text-align: center; overflow: hidden; }
+#programs .holiday-grid > .benefit { display: flex; flex-direction: column; }
+#programs .program-card-actions { margin-top: auto; padding-top: 28px; }
 #programs .program-photo { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin-bottom: 28px; }
 #programs .benefit > h3,
 #programs .benefit > .holiday-card__subtitle,
@@ -2402,7 +2405,7 @@ main > .section > .container {
 #formats .benefit__icon { height: 84px; margin-bottom: 28px; }
 #formats .benefit__icon img { display: block; width: 84px; height: 84px; }
 #formats .holiday-card h3 { font-size: var(--text-benefit-title); font-weight: 800; }
-#formats .holiday-card__subtitle { font-size: var(--text-lead); font-weight: 500; }
+#formats .holiday-card__subtitle { font-size: var(--text-lead); font-weight: 600; color: #996515; }
 #formats .holiday-list { list-style: none; padding: 0; line-height: 1.6; }
 @media (max-width: 780px) {
   #formats .format-benefits { grid-template-columns: minmax(0, 1fr); }
@@ -2483,6 +2486,18 @@ section[id], footer[id] { scroll-margin-top: 96px; }
 }
 
 /* Frosted navy panels shared by the popup contents. */
+@media (min-width: 781px) {
+  #family-program-dialog > .section > .container { padding: 48px 32px 24px; }
+  #family-program-dialog .section-head { margin-bottom: 20px; }
+  #family-program-dialog .section-head h2 { font-size: clamp(28px, 3vw, 40px); }
+  #family-program-dialog .section-head .lead { font-size: 21px; margin-top: 16px; }
+  #family-program-dialog > .section > .container > .holiday-timeline { padding: 16px 32px; }
+  #family-program-dialog .holiday-timeline li { padding-block: 14px; }
+  #family-program-dialog .holiday-timeline time,
+  #family-program-dialog .holiday-timeline h4 { font-size: 21px; }
+  #family-program-dialog .holiday-timeline p { font-size: 17px; line-height: 1.4; }
+  #family-program-dialog #family-program .holiday-timeline::after { height: 88px; margin-top: 4px; }
+}
 .stay-dialog .holiday-card,
 .stay-dialog .benefit,
 .stay-dialog > .section > .container > .holiday-timeline,
