@@ -2744,3 +2744,20 @@ section[id], footer[id] { scroll-margin-top: 96px; }
   #family-program-dialog .holiday-timeline::after,
   #included-dialog > .section > .container::after { height: 100px; background-size: contain; }
 }
+
+/* Compact dialogs while preserving readable content on small screens. */
+@media (min-width: 781px) {
+  .stay-dialog > .section > .container { padding: 48px 32px 24px; }
+  .stay-dialog .section-head { margin-bottom: 20px; }
+  .stay-dialog .section-head h2 { font-size: clamp(26px, 3vw, 38px); }
+  .stay-dialog .holiday-actions { gap: 16px; margin-top: 20px; }
+  .stay-dialog .holiday-actions .holiday-button { min-height: 44px; padding: 10px 20px; font-size: 16px; }
+  #included .holiday-table { font-size: clamp(15px, 1.4vw, 19px); }
+  #included .holiday-table th, #included .holiday-table td { padding: 12px 16px; line-height: 1.35; }
+  #included .holiday-table td { font-size: 22px; }
+  #included-dialog > .section > .container::after { height: 64px; margin-top: 8px; }
+  #adult-dialog .holiday-timeline li { padding-block: 12px; }
+  #adult-dialog .holiday-timeline h4, #adult-dialog .holiday-timeline time { font-size: 21px; }
+  #adult-dialog .holiday-timeline p { font-size: 17px; line-height: 1.4; }
+  #adult-dialog .holiday-timeline::after, #family-program-dialog .holiday-timeline::after { height: 72px; }
+}

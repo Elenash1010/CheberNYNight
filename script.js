@@ -19,6 +19,27 @@ if (heroTitle) {
   document.fonts.ready.then(fitHeroTitle);
 }
 
+// Fit overflowing desktop dialogs without shrinking their close buttons.
+function fitDialog(dialog) {
+  const section = dialog.querySelector(':scope > .section');
+  if (!section) return;
+  section.style.zoom = '';
+  if (!window.matchMedia('(min-width: 781px)').matches) return;
+  for (let attempt = 0; attempt < 12 && dialog.scrollHeight > dialog.clientHeight + 1; attempt++) {
+    const currentScale = Number(section.style.zoom) || 1;
+    const nextScale = Math.max(.7, currentScale * (dialog.clientHeight - 4) / dialog.scrollHeight);
+    if (nextScale >= currentScale) break;
+    section.style.zoom = String(nextScale);
+    if (nextScale === .7) break;
+  }
+  dialog.scrollTop = 0;
+}
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.stay-dialog[open]').forEach(fitDialog);
+});
+document.fonts.ready.then(() => {
+  document.querySelectorAll('.stay-dialog[open]').forEach(fitDialog);
+});
 for (const [dialogSelector, buttonSelector] of [
   ['#stay-dialog', '[data-open-stay]'],
   ['#price-stay-dialog', '[data-open-price-stay]'],
@@ -37,6 +58,7 @@ if (stayDialog && triggers.length) {
   triggers.forEach(trigger => trigger.addEventListener('click', () => {
     stayDetails = trigger;
     stayDialog.showModal();
+    fitDialog(stayDialog);
     document.body.classList.add('modal-open');
   }));
   stayDialog.querySelector('.stay-dialog__close').addEventListener('click', () => stayDialog.close());
